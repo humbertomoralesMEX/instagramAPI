@@ -8,16 +8,24 @@
 
 import UIKit
 
-class fullViewController: UIViewController {
+class fullViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
+    @IBOutlet weak var labeLikes: UILabel!
     var post : Post!
+    @IBOutlet weak var labelText: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
+        self.labeLikes.text = "❤︎ "+post.likes.count.description+" likes"
+        self.labelText.text = post.caption.text
+        self.labelText.numberOfLines = 2
+        self.labelText.adjustsFontSizeToFitWidth = true
+        self.labelText.minimumScaleFactor = 0.8
             let queue = NSOperationQueue()
             NSURLConnection.sendAsynchronousRequest(
                 NSURLRequest(URL: NSURL(string: post.images.stanrd_resolution.url)!),
@@ -33,11 +41,13 @@ class fullViewController: UIViewController {
                         }
                     }
             })
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 3.0
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+/*    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.navigationController?.popToRootViewControllerAnimated(false)
-    }
+    }*/
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -47,4 +57,18 @@ class fullViewController: UIViewController {
             self.navigationController?.popToRootViewControllerAnimated(false)
     }
 
+    //MARK: - UIViewScrollDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+    }
+    
+    func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView!) {
+        
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return self.imageView
+    }
+    
 }

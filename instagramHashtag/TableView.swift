@@ -25,6 +25,7 @@ class TableView: UITableViewController {
         
         super.viewDidLoad()
         self.navigationItem.title = "#Selfie"
+        self.tableView.tableFooterView?.hidden=true
         doAuthInstagram()
     }
     
@@ -141,6 +142,13 @@ class TableView: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activity.frame = CGRectMake(0, 0, 20, 20)
+        activity.startAnimating()
+        return activity
+    }
+    
     //MARK: - TableView Delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -153,6 +161,9 @@ class TableView: UITableViewController {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == tableView.numberOfRowsInSection(indexPath.section)-1{
             loadMoreData()
+            tableView.tableFooterView?.hidden=false
+        }else{
+            tableView.tableFooterView?.hidden = true
         }
     }
     

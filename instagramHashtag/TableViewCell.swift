@@ -15,11 +15,12 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var imageLowRes: UIImageView!
     @IBOutlet weak var labelText: UILabel!
     @IBOutlet weak var activity: UIActivityIndicatorView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.labelText.numberOfLines = 2
         self.labelText.adjustsFontSizeToFitWidth = true
-        self.labelText.minimumScaleFactor = 0.5
+        self.labelText.minimumScaleFactor = 0.8
     }
 }

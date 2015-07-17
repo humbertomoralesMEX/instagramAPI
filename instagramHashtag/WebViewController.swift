@@ -38,5 +38,9 @@ class WebViewController: OAuthWebViewController, UIWebViewDelegate {
         }
         return true
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
 }
