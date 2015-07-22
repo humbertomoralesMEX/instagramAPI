@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TsF-lf-uSy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A226f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TsF-lf-uSy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -31,6 +31,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="gTF-a6-b98">
                                             <rect key="frame" x="0.0" y="42" width="375" height="375"/>
                                             <animations/>
+                                            <gestureRecognizers/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDl-hu-g3o">
                                             <rect key="frame" x="56" y="12" width="206" height="21"/>
@@ -48,14 +49,14 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hea-NT-Zfn">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hea-NT-Zfn">
                                             <rect key="frame" x="8" y="2" width="40" height="40"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="Udb-EG-1Zm"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="X9Z-y5-v3q">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="X9Z-y5-v3q">
                                             <rect key="frame" x="8" y="2" width="40" height="40"/>
                                             <animations/>
                                         </imageView>
@@ -63,7 +64,7 @@
                                             <rect key="frame" x="177" y="207" width="20" height="20"/>
                                             <animations/>
                                         </activityIndicatorView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rk-J9-Gpf">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rk-J9-Gpf">
                                             <rect key="frame" x="8" y="418" width="359" height="41"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -91,7 +92,7 @@
                                         <constraint firstItem="Hea-NT-Zfn" firstAttribute="top" secondItem="X9Z-y5-v3q" secondAttribute="top" id="f9P-eC-jqD"/>
                                         <constraint firstItem="vDl-hu-g3o" firstAttribute="top" secondItem="Bkg-9R-BGG" secondAttribute="topMargin" constant="4" id="hIo-Zm-awQ"/>
                                         <constraint firstItem="vDl-hu-g3o" firstAttribute="leading" secondItem="X9Z-y5-v3q" secondAttribute="trailing" constant="8" symbolic="YES" id="hZV-WB-B56"/>
-                                        <constraint firstItem="Hea-NT-Zfn" firstAttribute="leading" secondItem="Bkg-9R-BGG" secondAttribute="leadingMargin" constant="-7" id="ibg-cc-luo"/>
+                                        <constraint firstItem="Hea-NT-Zfn" firstAttribute="leading" secondItem="Bkg-9R-BGG" secondAttribute="leadingMargin" id="ibg-cc-luo"/>
                                         <constraint firstItem="vDl-hu-g3o" firstAttribute="leading" secondItem="Hea-NT-Zfn" secondAttribute="trailing" constant="8" symbolic="YES" id="jUA-F5-hej"/>
                                     </constraints>
                                     <variation key="default">
@@ -188,6 +189,21 @@
                                     <outlet property="profileImage" destination="WY1-sZ-79M" id="ztK-nb-KWN"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="loading" rowHeight="40" id="NP0-4F-DuP" customClass="TableViewCell" customModule="instagramHashtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NP0-4F-DuP" id="Yer-y9-8mY">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UPU-I1-mR0">
+                                            <rect key="frame" x="177" y="11" width="20" height="20"/>
+                                            <animations/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="CfY-yO-bcc" id="QcD-ZI-v56"/>
@@ -213,12 +229,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5w1-Of-csP">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w1-Of-csP">
                                 <rect key="frame" x="0.0" y="43" width="600" height="491"/>
                                 <subviews>
                                     <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BuQ-SV-qaw">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="491"/>
                                         <animations/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hzD-5w-zWe" appends="YES" id="YYL-Mh-4tW"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <animations/>
@@ -315,10 +335,16 @@
                         <outlet property="imageView" destination="BuQ-SV-qaw" id="QGg-pI-ThC"/>
                         <outlet property="labeLikes" destination="MCT-DU-QbI" id="k1Z-55-xoU"/>
                         <outlet property="labelText" destination="T3P-Xh-AmS" id="dLu-lZ-Z4v"/>
+                        <outlet property="longPressGesture" destination="hzD-5w-zWe" id="nRc-vQ-qT1"/>
                         <outlet property="scrollView" destination="5w1-Of-csP" id="m5U-NE-MYv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IEs-PR-WRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.99999999999999989" id="hzD-5w-zWe">
+                    <connections>
+                        <action selector="handleLongPress:" destination="XjY-KG-hHp" id="lad-ec-145"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4942" y="-111"/>
         </scene>

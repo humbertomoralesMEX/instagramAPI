@@ -8,6 +8,10 @@
 
 
 let tag : String = "selfie"
+let consumerKey = "9e78ffd27ecc4d0f8ce4c77bf5eacde1"
+let consumerSecret = "afb121fb648a46c6b21abef1e3befc0b"
+let authorizeUrl = "https://api.instagram.com/oauth/authorize"
+let responseType = "token"
 
 import UIKit
 import OAuthSwift
@@ -17,8 +21,8 @@ class TableView: UITableViewController {
     
     var postsObjects = [Post]()
     
-    var MIN_ID : Int!
-    var MAX_ID : Int!
+    var MIN_ID  = 0
+    var MAX_ID  = 0
     var next_url = ""
     
     override func viewDidLoad() {
@@ -29,14 +33,19 @@ class TableView: UITableViewController {
         doAuthInstagram()
     }
     
+    override func didReceiveMemoryWarning() {
+        
+    }
+    
     //MARK: - Authetication
     
     func doAuthInstagram(){
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let oauthswift = OAuth2Swift(
-            consumerKey: "9e78ffd27ecc4d0f8ce4c77bf5eacde1",
-            consumerSecret: "afb121fb648a46c6b21abef1e3befc0b",
-            authorizeUrl: "https://api.instagram.com/oauth/authorize",
-            responseType: "token")
+            consumerKey: consumerKey,
+            consumerSecret: consumerSecret,
+            authorizeUrl: authorizeUrl,
+            responseType: responseType)
         
         let state: String = generateStateWithLength(20) as String
         
@@ -47,10 +56,11 @@ class TableView: UITableViewController {
             state: state,
             success: { credential, response, parameters in
                 let urlTags : String = "https://api.instagram.com/v1/tags/\(tag)/media/recent?access_token=\(credential.oauth_token)"
-                let parameters : Dictionary = ["COUNT":10 , "MIN_TAG_ID" : 0, "MAX_TAG_ID" : 0]
+                let parameters : Dictionary = ["COUNT":10 , "MIN_TAG_ID" : self.MIN_ID, "MAX_TAG_ID" : self.MAX_ID]
                 oauthswift.client.get(urlTags,
                     parameters: parameters,
                     success: { data, response in
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         let json = JSON(data:data)
                         if json["meta"]["code"].intValue == 200 {
                             self.doCreateObjects(json["data"].arrayValue)
@@ -73,21 +83,28 @@ class TableView: UITableViewController {
     //MARK: - TableView Data Source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if !self.postsObjects.isEmpty{
+            return 1
+        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if !self.postsObjects.isEmpty{
         return self.postsObjects.count
+        }
+        return 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> TableViewCell {
         
         var cellIdentifier = ""
         var imageSize = ""
+        let post : Post = postsObjects[indexPath.row]
 
         if indexPath.row % 3 == 0{
             cellIdentifier = "CellBig"
-            imageSize = postsObjects[indexPath.row].images.low_resolution!.url
+            imageSize = post.images.low_resolution!.url
             
         }else{
             cellIdentifier = "CellSmall"
@@ -96,40 +113,47 @@ class TableView: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! TableViewCell
         
-        cell.labelUsername.text = postsObjects[indexPath.row].user.username
-        cell.labelText.text = postsObjects[indexPath.row].caption.text
+        cell.labelUsername.text = post.user.username
+        cell.labelText.text = post.caption.text
+        cell.labelText.attributedText = highlightHashtags("#\\w+", inString: post.caption.text)
         
-        let queue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(
-            NSURLRequest(URL: NSURL(string: postsObjects[indexPath.row].user.profile_picture)!),
-            queue: queue,
-            completionHandler: {
-                (response:NSURLResponse!, data:NSData!, error:NSError!) in
-                dispatch_sync(dispatch_get_main_queue()){
-                    if data.length > 0 && error == nil{
-                        cell.profileImage.image = UIImage(data: data)
-                    }else if error != nil{
-                        cell.profileImage.image = nil
-                    }
-                }
-        })
-        
-        let queue2 = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(
-            NSURLRequest(URL: NSURL(string: imageSize)!),
-            queue: queue2,
-            completionHandler: {
-                (response:NSURLResponse!, data:NSData!, error:NSError!) in
-                dispatch_sync(dispatch_get_main_queue()){
+        if post.images.low_resolution.savedImage == nil{
+            let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let session = NSURLSession(configuration: sessionConfiguration)
+            let loadDataTask = session.dataTaskWithURL(NSURL(string: imageSize)!, completionHandler: {
+                (data:NSData!,response:NSURLResponse!,error:NSError!) -> Void in
+                dispatch_async(dispatch_get_main_queue(), {
                     cell.activity.stopAnimating()
-                    if data.length > 0 && error == nil{
-                        cell.imageLowRes.image = UIImage(data: data)
-                    }else if error != nil{
+                    if data != nil && error==nil{
+                        post.images.low_resolution.savedImage = UIImage(data: data)
+                        cell.imageLowRes.image = post.images.low_resolution.savedImage
+                    }else{
                         cell.imageLowRes.image = nil
+                        print(error.localizedDescription)
                     }
+                })
+            })
+            
+            loadDataTask.resume()
+        }else{
+            cell.imageLowRes.image = post.images.low_resolution.savedImage
+        }
+        
+        let urlsession2 = NSURLSession.sharedSession()
+        let loadDataTask2 = urlsession2.dataTaskWithURL(NSURL(string: post.user.profile_picture)!, completionHandler: {
+            (data:NSData!,response:NSURLResponse!,error:NSError!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                if data != nil && error==nil{
+                    cell.profileImage.image = UIImage(data: data)
+                }else{
+                    cell.profileImage.image = nil
+                    print(error.localizedDescription)
                 }
+            })
         })
         
+        loadDataTask2.resume()
+
         return cell
     }
     
@@ -141,6 +165,7 @@ class TableView: UITableViewController {
             return 280.0
         }
     }
+    
     
     //MARK: - TableView Delegate
     
@@ -157,16 +182,18 @@ class TableView: UITableViewController {
         }
     }
     
-    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
     
     //MARK: - Log
     
     func log(message: String)
     {
         print("[Instagram-Hastag]:\(message)")
+        
+        
     }
     
     //MARK: - Model
@@ -215,33 +242,73 @@ class TableView: UITableViewController {
             
             postsObjects.append(actualPost)
         }
-        self.tableView.reloadData()
-        self.tableView.flashScrollIndicators()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+            self.tableView.flashScrollIndicators()
+        })
     }
     
     func loadMoreData(){
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let oauthswift = OAuth2Swift(
-            consumerKey: "9e78ffd27ecc4d0f8ce4c77bf5eacde1",
-            consumerSecret: "afb121fb648a46c6b21abef1e3befc0b",
-            authorizeUrl: "https://api.instagram.com/oauth/authorize",
-            responseType: "token")
+            consumerKey: consumerKey,
+            consumerSecret: consumerSecret,
+            authorizeUrl: authorizeUrl,
+            responseType: responseType)
         
         let state: String = generateStateWithLength(20) as String
         let parameters : Dictionary = ["COUNT":10 , "MIN_TAG_ID" : self.MIN_ID, "MAX_TAG_ID" : self.MAX_ID]
-                oauthswift.client.get(next_url,
-                    parameters: parameters,
-                    success: { data, response in
-                        let json = JSON(data:data)
-                        if json["meta"]["code"].intValue == 200 {
-                            self.doCreateObjects(json["data"].arrayValue)
-                            self.next_url = json["pagination"]["next_url"].stringValue
-                            self.MAX_ID = json["pagination"]["next_max_tag_id"].intValue
-                            self.MIN_ID = json["pagination"]["min_tag_id"].intValue
-                        }
-                    },
-                    failure: { (error:NSError!) -> Void in
-                        print(error)
-                })
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
+        dispatch_async(queue, {
+            oauthswift.client.get(self.next_url,
+                parameters: parameters,
+                success: { data, response in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    let json = JSON(data:data)
+                    if json["meta"]["code"].intValue == 200 {
+                        self.doCreateObjects(json["data"].arrayValue)
+                        self.next_url = json["pagination"]["next_url"].stringValue
+                        self.MAX_ID = json["pagination"]["next_max_tag_id"].intValue
+                        self.MIN_ID = json["pagination"]["min_tag_id"].intValue
+                    }
+                },
+                failure: { (error:NSError!) -> Void in
+                    print(error)
+            })
+        })
     }
-
+    
+    func listMatches(pattern: String, inString string:String) -> [String]{
+        let regex = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.allZeros, error:nil)
+        let range = NSMakeRange(0, count(string))
+        let matches = regex?.matchesInString(string, options: .allZeros, range: range) as! [NSTextCheckingResult]
+        
+        return matches.map{
+            let range = $0.range
+            return (string as NSString).substringWithRange(range)
+        }
+    }
+    
+    func highlightHashtags (pattern : String, inString string: String) -> NSAttributedString{
+        let regex = NSRegularExpression(pattern: pattern, options: .allZeros, error: nil)
+        let range = NSMakeRange(0, count(string))
+        let matches = regex?.matchesInString(string, options: .allZeros, range: range) as! [NSTextCheckingResult]
+        
+        let attributedText = NSMutableAttributedString(string: string)
+        
+        for match in matches{
+            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.blueColor(), range: match.range)
+        }
+        
+        return attributedText.copy() as! NSAttributedString
+    }
+    
+    func replaceMatches(pattern:String, inString string: String, withString replacementString: String) -> String?
+    {
+        let regex = NSRegularExpression(pattern: pattern, options: .allZeros, error: nil)
+        let range = NSMakeRange(0, count(string))
+        
+        return regex?.stringByReplacingMatchesInString(string, options: .allZeros, range: range, withTemplate: replacementString)
+    }
+    
 }

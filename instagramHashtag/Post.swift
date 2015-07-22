@@ -8,8 +8,9 @@
 
 import Foundation
 import SwiftyJSON
+import UIKit
 
-class Post {
+class Post : NSObject{
     var idPost : String!
     var comments : Comments!
     var created_time : Int!
@@ -26,7 +27,7 @@ class Post {
     var attribution : AnyObject
     var location : Location!
     
-    init(){
+    override init(){
         self.idPost = nil
         self.comments = nil
         self.created_time = nil
@@ -49,39 +50,40 @@ class Post {
     }
 }
 
-class User {
+class User : NSObject{
     var username : String!
     var id : String!
     var profile_picture : String!
     var fullName : String!
 }
 
-class Image {
+class Image  : NSObject{
     var url : String!
     var width : Int!
     var height : Int!
+    var savedImage : UIImage?
 }
 
-class Images {
+class Images : NSObject {
     var low_resolution : Image!
     var stanrd_resolution : Image!
     var thunbnail : Image!
 }
 
-class Location {
+class Location : NSObject {
     var id : Int!
     var latitude : Double!
     var name : String!
     var longitude : Double!
 }
 
-class Comments {
+class Comments  : NSObject {
 
     var count : Int!
     var data = [JSON]()
 }
 
-class Likes {
+class Likes  : NSObject{
     var count : Int!
     var data = []
 }

@@ -23,4 +23,5 @@ class TableViewCell: UITableViewCell {
         self.labelText.adjustsFontSizeToFitWidth = true
         self.labelText.minimumScaleFactor = 0.8
     }
+
 }

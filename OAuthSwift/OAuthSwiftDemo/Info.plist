@@ -27,6 +27,7 @@
 			<array>
 				<string>oauth-swift</string>
 				<string>your.bundle.id</string>
+				<string>g9e78ffd27ecc4d0f8ce4c77bf5eacde1://insta-hash</string>
 			</array>
 		</dict>
 	</array>

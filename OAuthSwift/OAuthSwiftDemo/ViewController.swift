@@ -11,7 +11,6 @@ import OAuthSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tableView: UITableView!
     var services = ["Twitter", "Flickr", "Github", "Instagram", "Foursquare", "Fitbit", "Withings", "Linkedin", "Linkedin2", "Dropbox", "Dribbble", "Salesforce", "BitBucket", "GoogleDrive", "Smugmug", "Intuit", "Zaim", "Tumblr", "Slack"]
 
     override func viewDidLoad() {
@@ -122,15 +121,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func doOAuthInstagram(){
         let oauthswift = OAuth2Swift(
-            consumerKey:    Instagram["consumerKey"]!,
-            consumerSecret: Instagram["consumerSecret"]!,
+            consumerKey:    "9e78ffd27ecc4d0f8ce4c77bf5eacde1",
+            consumerSecret: "afb121fb648a46c6b21abef1e3befc0b",
             authorizeUrl:   "https://api.instagram.com/oauth/authorize",
             responseType:   "token"
         )
 
         let state: String = generateStateWithLength(20) as String
         oauthswift.authorize_url_handler = WebViewController()
-        oauthswift.authorizeWithCallbackURL( NSURL(string: "oauth-swift://oauth-callback/instagram")!, scope: "likes+comments", state:state, success: {
+        oauthswift.authorizeWithCallbackURL( NSURL(string: "ig9e78ffd27ecc4d0f8ce4c77bf5eacde1://insta-hash")!, scope: "likes+comments", state:state, success: {
             credential, response, parameters in
             self.showAlertView("Instagram", message: "oauth_token:\(credential.oauth_token)")
             let url :String = "https://api.instagram.com/v1/users/1574083/?access_token=\(credential.oauth_token)"

@@ -18,6 +18,7 @@ class fullViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var labelText: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet var longPressGesture: UILongPressGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
@@ -26,28 +27,28 @@ class fullViewController: UIViewController, UIScrollViewDelegate {
         self.labelText.numberOfLines = 2
         self.labelText.adjustsFontSizeToFitWidth = true
         self.labelText.minimumScaleFactor = 0.8
-            let queue = NSOperationQueue()
-            NSURLConnection.sendAsynchronousRequest(
-                NSURLRequest(URL: NSURL(string: post.images.stanrd_resolution.url)!),
-                queue: queue,
-                completionHandler: {
-                    (response:NSURLResponse!, data:NSData!, error:NSError!) in
-                    dispatch_sync(dispatch_get_main_queue()){
-                        self.activity.stopAnimating()
-                        if data.length > 0 && error == nil{
-                            self.imageView.image = UIImage(data: data)
-                        }else if error != nil{
-                            self.imageView.image = nil
-                        }
-                    }
-            })
+        
+        let session = NSURLSession.sharedSession()
+        let urlImage = NSURL(string: post.images.stanrd_resolution.url)!
+        let sessionTask = session.dataTaskWithURL(urlImage, completionHandler: {
+            (data:NSData!,response:NSURLResponse!,error:NSError!) -> Void in
+            dispatch_sync(dispatch_get_main_queue()){
+                self.activity.stopAnimating()
+                if data.length > 0 && error == nil{
+                    self.imageView.image = UIImage(data: data)
+                }else if error != nil{
+                    self.imageView.image = nil
+                }
+            }
+        })
+        
+        sessionTask.resume()
+        
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 3.0
     }
     
-/*    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.navigationController?.popToRootViewControllerAnimated(false)
-    }*/
+    
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -59,16 +60,32 @@ class fullViewController: UIViewController, UIScrollViewDelegate {
 
     //MARK: - UIViewScrollDelegate
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-    }
-    
-    func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView!) {
-        
-    }
-    
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }
+    
+    //MARK: - Save Image with long press gesture = 1.2 sec
+    
+    @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
+        var controller:UIAlertController?
+        controller = UIAlertController(title: "Do you want save the image?", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let actionSave = UIAlertAction(title: "Save Photo", style: UIAlertActionStyle.Default,
+            handler: {(paramAction:UIAlertAction!) in
+                let selectorAsString = "imageWasSavedSuccessfully:didFinishSavingWithError:context:"
+                let selectorToCall = Selector(selectorAsString)
+                UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, selectorToCall, nil)
+            })
+        let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:nil)
+        controller?.addAction(actionSave)
+        controller?.addAction(actionCancel)
+        self.presentViewController(controller!, animated: true, completion: nil)
+    }
+    
+    func imageWasSavedSuccessfully(image: UIImage, didFinishSavingWithError error: NSError!, context: UnsafeMutablePointer<()>){
+            if let theError = error{
+            println("An error happened while saving the image = \(theError)")
+        }else{
+            println("Image was saved successfully")
+    } }
     
 }

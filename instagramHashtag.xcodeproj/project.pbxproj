@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		E371AD131B59012D00E7C98D /* fullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E371AD121B59012D00E7C98D /* fullViewController.swift */; };
+		E3BE0C421B5B8D9D00765DE0 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BE0C3D1B5B8D8F00765DE0 /* OAuthSwift.framework */; };
+		E3BE0C431B5B8D9D00765DE0 /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3BE0C3D1B5B8D8F00765DE0 /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3CDF8131B587B9D009BDB65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CDF8121B587B9D009BDB65 /* AppDelegate.swift */; };
 		E3CDF8151B587B9D009BDB65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CDF8141B587B9D009BDB65 /* ViewController.swift */; };
 		E3CDF81A1B587B9D009BDB65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3CDF8191B587B9D009BDB65 /* Images.xcassets */; };
 		E3CDF81D1B587B9D009BDB65 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3CDF81B1B587B9D009BDB65 /* LaunchScreen.xib */; };
 		E3CDF8291B587B9D009BDB65 /* instagramHashtagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CDF8281B587B9D009BDB65 /* instagramHashtagTests.swift */; };
 		E3CDF8B11B5884A7009BDB65 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CDF8B01B5884A7009BDB65 /* WebViewController.swift */; };
-		E3CDF8B21B5885E3009BDB65 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CDF8A71B5880A3009BDB65 /* OAuthSwift.framework */; };
-		E3CDF8B31B5885E3009BDB65 /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CDF8A71B5880A3009BDB65 /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3CDF8B81B58AE88009BDB65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CDF8B71B58AE88009BDB65 /* Main.storyboard */; };
 		E3CDF8DE1B58C30C009BDB65 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CDF8D51B58C2F4009BDB65 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3CDF8E01B58C658009BDB65 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CDF8DF1B58C658009BDB65 /* Post.swift */; };
@@ -46,54 +46,47 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E3BE0C3A1B5B8D8F00765DE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F451E3C5195B8CD80051434C;
+			remoteInfo = OAuthSwiftDemo;
+		};
+		E3BE0C3C1B5B8D8F00765DE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F435027A1A6791B200038A29;
+			remoteInfo = OAuthSwift;
+		};
+		E3BE0C3E1B5B8D8F00765DE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C49FD5241AFB5DF500791E1A;
+			remoteInfo = OAuthSwiftOSXDemo;
+		};
+		E3BE0C401B5B8D8F00765DE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C48B28021AFA598D00C7DEF6;
+			remoteInfo = OAuthSwiftOSX;
+		};
+		E3BE0C441B5B8D9D00765DE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F43502791A6791B200038A29;
+			remoteInfo = OAuthSwift;
+		};
 		E3CDF8231B587B9D009BDB65 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E3CDF8051B587B9C009BDB65 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E3CDF80C1B587B9C009BDB65;
 			remoteInfo = instagramHashtag;
-		};
-		E3CDF8A41B5880A3009BDB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F451E3C5195B8CD80051434C;
-			remoteInfo = OAuthSwiftDemo;
-		};
-		E3CDF8A61B5880A3009BDB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F435027A1A6791B200038A29;
-			remoteInfo = OAuthSwift;
-		};
-		E3CDF8A81B5880A3009BDB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C49FD5241AFB5DF500791E1A;
-			remoteInfo = OAuthSwiftOSXDemo;
-		};
-		E3CDF8AA1B5880A3009BDB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C48B28021AFA598D00C7DEF6;
-			remoteInfo = OAuthSwiftOSX;
-		};
-		E3CDF8AC1B5880AC009BDB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F43502791A6791B200038A29;
-			remoteInfo = OAuthSwift;
-		};
-		E3CDF8B41B5885E3009BDB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F43502791A6791B200038A29;
-			remoteInfo = OAuthSwift;
 		};
 		E3CDF8D41B58C2F4009BDB65 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -139,8 +132,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E3BE0C431B5B8D9D00765DE0 /* OAuthSwift.framework in Embed Frameworks */,
 				E3CDF8DE1B58C30C009BDB65 /* SwiftyJSON.framework in Embed Frameworks */,
-				E3CDF8B31B5885E3009BDB65 /* OAuthSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +142,7 @@
 
 /* Begin PBXFileReference section */
 		E371AD121B59012D00E7C98D /* fullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fullViewController.swift; sourceTree = "<group>"; };
+		E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = OAuthSwift/OAuthSwift.xcodeproj; sourceTree = "<group>"; };
 		E3CDF80D1B587B9D009BDB65 /* instagramHashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instagramHashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3CDF8111B587B9D009BDB65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3CDF8121B587B9D009BDB65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +152,6 @@
 		E3CDF8221B587B9D009BDB65 /* instagramHashtagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = instagramHashtagTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3CDF8271B587B9D009BDB65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3CDF8281B587B9D009BDB65 /* instagramHashtagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instagramHashtagTests.swift; sourceTree = "<group>"; };
-		E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "OAuthSwift-master-2/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
 		E3CDF8B01B5884A7009BDB65 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E3CDF8B71B58AE88009BDB65 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E3CDF8CD1B58C2F4009BDB65 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "SwiftyJSON-master-2/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
@@ -194,7 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3CDF8B21B5885E3009BDB65 /* OAuthSwift.framework in Frameworks */,
+				E3BE0C421B5B8D9D00765DE0 /* OAuthSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,11 +201,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E3BE0C341B5B8D8F00765DE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3BE0C3B1B5B8D8F00765DE0 /* OAuthSwiftDemo.app */,
+				E3BE0C3D1B5B8D8F00765DE0 /* OAuthSwift.framework */,
+				E3BE0C3F1B5B8D8F00765DE0 /* OAuthSwiftOSXDemo.app */,
+				E3BE0C411B5B8D8F00765DE0 /* OAuthSwiftOSX.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E3CDF8041B587B9C009BDB65 = {
 			isa = PBXGroup;
 			children = (
+				E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */,
 				E3CDF8CD1B58C2F4009BDB65 /* SwiftyJSON.xcodeproj */,
-				E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */,
 				E3CDF80F1B587B9D009BDB65 /* instagramHashtag */,
 				E3CDF8251B587B9D009BDB65 /* instagramHashtagTests */,
 				E3CDF80E1B587B9D009BDB65 /* Products */,
@@ -272,17 +276,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E3CDF89E1B5880A2009BDB65 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E3CDF8A51B5880A3009BDB65 /* OAuthSwiftDemo.app */,
-				E3CDF8A71B5880A3009BDB65 /* OAuthSwift.framework */,
-				E3CDF8A91B5880A3009BDB65 /* OAuthSwiftOSXDemo.app */,
-				E3CDF8AB1B5880A3009BDB65 /* OAuthSwiftOSX.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E3CDF8CE1B58C2F4009BDB65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,8 +332,7 @@
 			);
 			dependencies = (
 				E3CDF8DD1B58C305009BDB65 /* PBXTargetDependency */,
-				E3CDF8AD1B5880AC009BDB65 /* PBXTargetDependency */,
-				E3CDF8B51B5885E3009BDB65 /* PBXTargetDependency */,
+				E3BE0C451B5B8D9D00765DE0 /* PBXTargetDependency */,
 			);
 			name = instagramHashtag;
 			productName = instagramHashtag;
@@ -398,8 +390,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E3CDF89E1B5880A2009BDB65 /* Products */;
-					ProjectRef = E3CDF89D1B5880A2009BDB65 /* OAuthSwift.xcodeproj */;
+					ProductGroup = E3BE0C341B5B8D8F00765DE0 /* Products */;
+					ProjectRef = E3BE0C331B5B8D8F00765DE0 /* OAuthSwift.xcodeproj */;
 				},
 				{
 					ProductGroup = E3CDF8CE1B58C2F4009BDB65 /* Products */;
@@ -415,32 +407,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E3CDF8A51B5880A3009BDB65 /* OAuthSwiftDemo.app */ = {
+		E3BE0C3B1B5B8D8F00765DE0 /* OAuthSwiftDemo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = OAuthSwiftDemo.app;
-			remoteRef = E3CDF8A41B5880A3009BDB65 /* PBXContainerItemProxy */;
+			remoteRef = E3BE0C3A1B5B8D8F00765DE0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E3CDF8A71B5880A3009BDB65 /* OAuthSwift.framework */ = {
+		E3BE0C3D1B5B8D8F00765DE0 /* OAuthSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = OAuthSwift.framework;
-			remoteRef = E3CDF8A61B5880A3009BDB65 /* PBXContainerItemProxy */;
+			remoteRef = E3BE0C3C1B5B8D8F00765DE0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E3CDF8A91B5880A3009BDB65 /* OAuthSwiftOSXDemo.app */ = {
+		E3BE0C3F1B5B8D8F00765DE0 /* OAuthSwiftOSXDemo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = OAuthSwiftOSXDemo.app;
-			remoteRef = E3CDF8A81B5880A3009BDB65 /* PBXContainerItemProxy */;
+			remoteRef = E3BE0C3E1B5B8D8F00765DE0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E3CDF8AB1B5880A3009BDB65 /* OAuthSwiftOSX.framework */ = {
+		E3BE0C411B5B8D8F00765DE0 /* OAuthSwiftOSX.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = OAuthSwiftOSX.framework;
-			remoteRef = E3CDF8AA1B5880A3009BDB65 /* PBXContainerItemProxy */;
+			remoteRef = E3BE0C401B5B8D8F00765DE0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E3CDF8D51B58C2F4009BDB65 /* SwiftyJSON.framework */ = {
@@ -541,20 +533,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E3BE0C451B5B8D9D00765DE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuthSwift;
+			targetProxy = E3BE0C441B5B8D9D00765DE0 /* PBXContainerItemProxy */;
+		};
 		E3CDF8241B587B9D009BDB65 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E3CDF80C1B587B9C009BDB65 /* instagramHashtag */;
 			targetProxy = E3CDF8231B587B9D009BDB65 /* PBXContainerItemProxy */;
-		};
-		E3CDF8AD1B5880AC009BDB65 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OAuthSwift;
-			targetProxy = E3CDF8AC1B5880AC009BDB65 /* PBXContainerItemProxy */;
-		};
-		E3CDF8B51B5885E3009BDB65 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OAuthSwift;
-			targetProxy = E3CDF8B41B5885E3009BDB65 /* PBXContainerItemProxy */;
 		};
 		E3CDF8DD1B58C305009BDB65 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
