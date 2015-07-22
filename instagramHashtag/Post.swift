@@ -55,6 +55,7 @@ class User : NSObject{
     var id : String!
     var profile_picture : String!
     var fullName : String!
+    var savedProfileImage : UIImage?
 }
 
 class Image  : NSObject{

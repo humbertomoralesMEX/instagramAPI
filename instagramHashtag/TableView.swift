@@ -133,26 +133,31 @@ class TableView: UITableViewController {
                     }
                 })
             })
-            
             loadDataTask.resume()
         }else{
             cell.imageLowRes.image = post.images.low_resolution.savedImage
         }
         
-        let urlsession2 = NSURLSession.sharedSession()
-        let loadDataTask2 = urlsession2.dataTaskWithURL(NSURL(string: post.user.profile_picture)!, completionHandler: {
-            (data:NSData!,response:NSURLResponse!,error:NSError!) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                if data != nil && error==nil{
-                    cell.profileImage.image = UIImage(data: data)
-                }else{
-                    cell.profileImage.image = nil
-                    print(error.localizedDescription)
-                }
+        if post.user.savedProfileImage == nil{
+            let urlsession2 = NSURLSession.sharedSession()
+            let loadDataTask2 = urlsession2.dataTaskWithURL(NSURL(string: post.user.profile_picture)!, completionHandler: {
+                (data:NSData!,response:NSURLResponse!,error:NSError!) -> Void in
+                dispatch_async(dispatch_get_main_queue(), {
+                    if data != nil && error==nil{
+                        post.user.savedProfileImage = UIImage(data: data)
+                        cell.profileImage.image = post.user.savedProfileImage
+                    }else{
+                        cell.profileImage.image = nil
+                        print(error.localizedDescription)
+                    }
+                })
             })
-        })
-        
-        loadDataTask2.resume()
+            
+            loadDataTask2.resume()
+        }else{
+            cell.profileImage.image = post.user.savedProfileImage
+        }
+
 
         return cell
     }
@@ -181,6 +186,7 @@ class TableView: UITableViewController {
             loadMoreData()
         }
     }
+    
     
     override func prefersStatusBarHidden() -> Bool {
         return true

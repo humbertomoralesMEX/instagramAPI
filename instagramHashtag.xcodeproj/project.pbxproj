@@ -236,17 +236,11 @@
 			isa = PBXGroup;
 			children = (
 				E3CDF8E31B58E75A009BDB65 /* Resources */,
-				E3CDF8E11B58D716009BDB65 /* TableViewCell.swift */,
-				E371AD121B59012D00E7C98D /* fullViewController.swift */,
-				E3CDF8B01B5884A7009BDB65 /* WebViewController.swift */,
-				E3CDF8121B587B9D009BDB65 /* AppDelegate.swift */,
-				E3CDF8141B587B9D009BDB65 /* ViewController.swift */,
-				E3CDF8EE1B58F128009BDB65 /* TableView.swift */,
+				E3DB3AAD1B5F8652003FB7FF /* Classes */,
 				E3CDF8191B587B9D009BDB65 /* Images.xcassets */,
 				E3CDF81B1B587B9D009BDB65 /* LaunchScreen.xib */,
 				E3CDF8101B587B9D009BDB65 /* Supporting Files */,
 				E3CDF8B71B58AE88009BDB65 /* Main.storyboard */,
-				E3CDF8DF1B58C658009BDB65 /* Post.swift */,
 			);
 			path = instagramHashtag;
 			sourceTree = "<group>";
@@ -314,6 +308,20 @@
 				E3CDF8EA1B58EC78009BDB65 /* profile@3x.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		E3DB3AAD1B5F8652003FB7FF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E3CDF8E11B58D716009BDB65 /* TableViewCell.swift */,
+				E371AD121B59012D00E7C98D /* fullViewController.swift */,
+				E3CDF8B01B5884A7009BDB65 /* WebViewController.swift */,
+				E3CDF8121B587B9D009BDB65 /* AppDelegate.swift */,
+				E3CDF8141B587B9D009BDB65 /* ViewController.swift */,
+				E3CDF8EE1B58F128009BDB65 /* TableView.swift */,
+				E3CDF8DF1B58C658009BDB65 /* Post.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
